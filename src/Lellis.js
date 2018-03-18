@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Guest from './components/Guest';
 import CreateGuest from './components/CreateGuest';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Lellis extends Component {
 
@@ -15,6 +16,7 @@ refresh = () => {
     const data = res.data;
     // if blog guests come back
     if (data.payload) {
+      //debugger;
       // store them in state
       this.setState({ guests: data.payload });
     }
@@ -28,7 +30,7 @@ refresh = () => {
   render() {
       return (
         <div className="guests">
-          {this.state.guests.map(guest => <Guest {...guest} />)}
+          {this.state.guests.map( guest => <Guest key={guest._id}{...guest} />)}
           <CreateGuest refresh={this.refresh} />
         </div>
       );
