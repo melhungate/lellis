@@ -1,6 +1,7 @@
 // components/CreateWedding
 import React from "react";
 import axios from "axios";
+import moment from "moment";
 
 class CreateWedding extends React.Component {
   state = {
@@ -26,6 +27,29 @@ class CreateWedding extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, addressLine1, addressLine2, addressLine3 } = this.state;
+    //const convertedHour = moment(startTime);
+    debugger;
+    //startTime.split(":") this will return an array of two elements
+    //create copy of date. set hour set minutes
+    var eventDate = new Date(date);
+    var startDate = new Date(eventDate.getTime());
+
+    const startTimeSplit = startTime.split(":");
+    const startHour = parseInt(startTimeSplit[0]);
+    const startMinutes = parseInt(startTimeSplit[1]);
+
+    startDate.setHours(startHour);
+    startDate.setMinutes(startMinutes);
+
+    var endDate = new Date(eventDate.getTime());
+    const endTimeSplit = endTime.split(":");
+    const endHour = parseInt(endTimeSplit[0]);
+    const endMinutes = parseInt(endTimeSplit[1]);
+
+    endDate.setHours(endHour);
+    endDate.setMinutes(endMinutes);    
+
+    //console.log(endTime);
     axios
       .post("/weddings", {
         weddingName,
@@ -33,9 +57,8 @@ class CreateWedding extends React.Component {
         partnerLastNameA,
         partnerFirstNameB,
         partnerLastNameB,
-        date,
-        startTime, 
-        endTime,
+        startDate, 
+        endDate,
         addressLine1,
         addressLine2,
         addressLine3
