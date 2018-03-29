@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ReactFilestack from 'filestack-react';
+
 import Story from './components/Story';
 import Rsvp from './components/Rsvp';
 import WhenWhere from './components/WhenWhere';
 import Registry from './components/Registry';
 import Admin from './components/Admin';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
 
 class Lellis extends Component {
     state = {
