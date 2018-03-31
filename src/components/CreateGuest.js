@@ -21,6 +21,7 @@ class CreateGuest extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const { firstName, lastName, email, rsvp, plusOne, message } = this.state;
+    //const wedding = "5ab8149fb885752250cd531d";
     axios
       .post("/guests", {
         firstName,
@@ -28,7 +29,8 @@ class CreateGuest extends React.Component {
         email,
         rsvp,
         plusOne,
-        message
+        message,
+        wedding : "5ab8149fb885752250cd531d"
       })
       .then(this.props.refresh);
   };

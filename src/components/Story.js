@@ -1,7 +1,7 @@
 import React from "react";
 
-const Story = ({weddings}) => {
-	console.log(weddings);
+const Story = ({weddingInfo}) => {
+	console.log(weddingInfo);
     return (
         <div>
             <h2>Our Story</h2>
