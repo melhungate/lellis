@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactFilestack from 'filestack-react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import Story from './components/Story';
-import Rsvp from './components/Rsvp';
-import WhenWhere from './components/WhenWhere';
-import Registry from './components/Registry';
 import Admin from './components/Admin';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import OurWedding from './components/OurWedding';
 
 class Lellis extends Component {
     state = {
@@ -36,11 +33,10 @@ class Lellis extends Component {
       return (
         <Router>
         <div>
-          <Route exact path='/' render={() => <Story weddings={this.state.weddings}/>} />
-          <Route path='/whenwhere' component={WhenWhere} />
-          <Route path='/registry' component={Registry} />
-          <Route path='/rsvp' component={Rsvp} />
-          <Route path='/admin' component={Admin} />
+        <Switch>
+          <Route exact path='/' component={Admin} />
+          <Route path='/:weddingName' component={OurWedding} />
+          </Switch>
           </div>
         </Router>
       );
