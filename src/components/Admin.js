@@ -6,8 +6,7 @@ import ReactFilestack from 'filestack-react';
 
 class Admin extends React.Component {
   state = {
-    weddings: [],
-    posterUrl: ""
+    weddings: []
   }
 
 refresh = () => {
@@ -22,14 +21,6 @@ refresh = () => {
     }
   });
 };
-    onUploadSuccess = (success) => {
-        const url = success.filesUploaded[0].url;
-        console.log(url);
-        this.setState({
-            posterUrl: url,
-        });
-      
-    }
 
   componentDidMount() {
     this.refresh();
@@ -38,12 +29,6 @@ refresh = () => {
   render() {
     return (
       <div>
-          <ReactFilestack
-              apikey={"AiNtWufS6LieOXs3fP2QTz"}
-              buttonText="Upload Photo"
-              buttonClass="classname"
-              onSuccess={this.onUploadSuccess}
-          />
           <CreateWedding refresh={this.refresh} />
         <div className="weddings">
           {this.state.weddings.map( wedding => <Wedding key={wedding._id}{...wedding} />)}

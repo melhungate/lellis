@@ -3,6 +3,8 @@ import React from "react";
 import axios from "axios";
 import moment from "moment";
 
+import UploadPic from './UploadPic';
+
 class CreateWedding extends React.Component {
   state = {
     weddingName: "",
@@ -15,8 +17,23 @@ class CreateWedding extends React.Component {
     endTime: "",
     addressLine1: "",
     addressLine2: "",
-    addressLine3: ""
+    addressLine3: "",
+    storyPic: "",
+    whenWherePic: "",
+    registryPic: "",
+    rsvpPic: ""
   };
+
+  onUploadSuccess = (success, picName) => {
+      const url = success.filesUploaded[0].url;
+      console.log(url);
+      console.log(picName);
+      debugger;
+      this.setState({
+          [picName]: url,
+      });
+    
+  }
 
   handleChange = e => {
     this.setState({
@@ -26,7 +43,7 @@ class CreateWedding extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, addressLine1, addressLine2, addressLine3 } = this.state;
+    const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic  } = this.state;
     //const convertedHour = moment(startTime);
     debugger;
     //startTime.split(":") this will return an array of two elements
@@ -61,7 +78,11 @@ class CreateWedding extends React.Component {
         endDate,
         addressLine1,
         addressLine2,
-        addressLine3
+        addressLine3,
+        storyPic,
+        whenWherePic,
+        registryPic,
+        rsvpPic 
       })
       .then(this.props.refresh);
   };
@@ -69,6 +90,10 @@ class CreateWedding extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Our Story Picture" picName="storyPic"/>
+        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "When & Where Picture" picName="whenWherePic"/>
+        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Registry Picture" picName="registryPic"/>
+        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "RSVP Picture" picName="rsvpPic"/>
         <h2>Create a New Wedding</h2>
         <div>
           <input
