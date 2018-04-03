@@ -26,9 +26,6 @@ class CreateWedding extends React.Component {
 
   onUploadSuccess = (success, picName) => {
       const url = success.filesUploaded[0].url;
-      console.log(url);
-      console.log(picName);
-      debugger;
       this.setState({
           [picName]: url,
       });
