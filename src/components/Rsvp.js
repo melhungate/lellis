@@ -45,6 +45,10 @@ refresh = () => {
   render() {
     return (
       <div>
+        <h1>RSVP</h1>
+        <img src={this.props.weddingInfo.rsvpPic} alt="RSVP Picture"/>
+        <h2>We're so excited to celebrate with you!</h2>
+        <h3>Kindly response by ...@mel - INSERT RSVP DEADLINE DATE HERE</h3>
         <CreateGuest refresh={this.refresh} weddingId={this.props.weddingInfo._id}/>
         <div className="guests">
           {this.state.guests.map( guest => <Guest key={guest._id}{...guest} />)}

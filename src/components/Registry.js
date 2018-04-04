@@ -3,8 +3,8 @@ import React from "react";
 const Registry = ({weddingInfo}) => {
     return (
         <div>
-            <h2>Registry</h2>
-            <p>{weddingInfo.partnerFirstNameA}</p>
+            <h1>Registry</h1>
+    		<img src={weddingInfo.registryPic} alt="Registry Picture"/>
         </div>
     )
 }
