@@ -39,7 +39,6 @@ class CreateGuest extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h2>Create a New Guest</h2>
         <div>
           <input
             onChange={this.handleChange}
