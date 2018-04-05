@@ -18,10 +18,21 @@ class CreateGuest extends React.Component {
     });
   };
 
+  clearInput = () => {
+    this.setState({ 
+      firstName: "",
+      lastName: "",
+      email: "",
+      rsvp: "",
+      plusOne: "",
+      message: "" 
+    });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
-    const { firstName, lastName, email, rsvp, plusOne, message } = this.state;
     debugger
+    const { firstName, lastName, email, rsvp, plusOne, message } = this.state;
     //const wedding = "5ab8149fb885752250cd531d";
     axios
       .post("/guests", {
@@ -33,7 +44,8 @@ class CreateGuest extends React.Component {
         message,
         wedding : this.props.weddingId
       })
-      .then(this.props.refresh);
+      .then(this.alert('guest created')); //need to do something on submit, but not sure what yet! 
+    this.clearInput();
   };
 
   render() {
@@ -42,6 +54,7 @@ class CreateGuest extends React.Component {
         <div>
           <input
             onChange={this.handleChange}
+            value={this.state.firstName}
             name="firstName"
             type="text"
             placeholder="First Name*"
@@ -50,6 +63,7 @@ class CreateGuest extends React.Component {
         <div>
           <input
             onChange={this.handleChange}
+            value={this.state.lastName}
             name="lastName"
             type="text"
             placeholder="Last Name*"
@@ -58,6 +72,7 @@ class CreateGuest extends React.Component {
         <div>
           <input
             onChange={this.handleChange}
+            value={this.state.email}
             name="email"
             type="text"
             placeholder="Email Address*"
@@ -66,6 +81,7 @@ class CreateGuest extends React.Component {
         <div>
           <textarea
             onChange={this.handleChange}
+            value={this.state.rsvp}
             name="rsvp"
             type="text"
             placeholder="Are you attending?*"
@@ -74,6 +90,7 @@ class CreateGuest extends React.Component {
         <div>
           <textarea
             onChange={this.handleChange}
+            value={this.state.plusOne}
             name="plusOne"
             type="text"
             placeholder="Who else is coming with you?*"
@@ -82,6 +99,7 @@ class CreateGuest extends React.Component {
         <div>
           <textarea
             onChange={this.handleChange}
+            value={this.state.message}
             name="message"
             type="text"
             placeholder="Message"
