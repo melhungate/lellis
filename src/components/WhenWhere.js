@@ -3,34 +3,21 @@ import moment from "moment";
 
 class WhenWhere extends React.Component {
 	state = {
-      day: "",
-      month: "",
-      date: "",
-      year: "",
       startTime: "",
-      endTime: ""
+      endTime: "",
+      weddingDay: ""
     }
 
 
     componentWillReceiveProps(nextProps) {
-    	var eventDate = new Date(nextProps.weddingInfo.startDate);
-    	var day = eventDate.getDay();
-    	var month = eventDate.getMonth();
-		var date = eventDate.getDate();
-		var year = eventDate.getFullYear();
-		var startTime = moment(eventDate).format('LT');
+    	//@ MEL ask how to do this right in the JSX
+		var weddingDay = moment(nextProps.weddingInfo.startDate).format('dddd, LL');
+		var startTime = moment(nextProps.weddingInfo.startDate).format('LT');
 		var endTime = moment(nextProps.weddingInfo.endDate).format('LT');
-    	var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		var dayName = weekdays[day];
-		var monthName = months[month];
     	this.setState({
-            day: dayName,
-            month: monthName, 
-            date: date,
-            year: year,
             startTime: startTime,
-            endTime: endTime
+            endTime: endTime,
+            weddingDay: weddingDay
   		});
   	}
 
@@ -40,7 +27,7 @@ class WhenWhere extends React.Component {
 		        <h1>When & Where</h1>
 				<img src={this.props.weddingInfo.whenWherePic} alt="When & Where Picture"/>
 				<h2>Ceremony and Reception</h2>
-				<h3>{this.state.day}, {this.state.month} {this.state.date}, {this.state.year}</h3>
+				<h3>{this.state.weddingDay}</h3>
 				<h3>{this.state.startTime} - {this.state.endTime}</h3>
 				<p>{this.props.weddingInfo.addressLine1}</p>
 				<p>{this.props.weddingInfo.addressLine2}</p>
