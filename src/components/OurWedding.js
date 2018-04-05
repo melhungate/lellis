@@ -8,6 +8,7 @@ import Rsvp from './Rsvp';
 import WhenWhere from './WhenWhere';
 import Registry from './Registry';
 import Admin from './Admin';
+import NavigationMenu from './NavigationMenu';
 
 class OurWedding extends React.Component {
       state = {
@@ -35,12 +36,19 @@ class OurWedding extends React.Component {
     return (
         <Router>
         <div>
+        <h1>{this.state.weddingInfo.partnerFirstNameA} {this.state.weddingInfo.partnerLastNameA} & {this.state.weddingInfo.partnerFirstNameB} {this.state.weddingInfo.partnerLastNameB}</h1>
+        <ul> 
+          <Link to={`/${this.state.weddingInfo.weddingName}`}>Our Home</Link>
+          <Link to={`/${this.state.weddingInfo.weddingName}/whenwhere`}>When & Where</Link>
+          <Link to={`/${this.state.weddingInfo.weddingName}/registry`}>Registry</Link>
+          <Link to={`/${this.state.weddingInfo.weddingName}/rsvp`}>RSVP</Link>
+        </ul>
         <Switch>
-          <Route exact path='/:weddingName/' render={() => <Story weddingInfo={this.state.weddingInfo}/>} />
-          <Route path='/:weddingName/whenwhere' render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
-          <Route path='/:weddingName/registry' render={() => <Registry weddingInfo={this.state.weddingInfo}/>} />
-          <Route path='/:weddingName/rsvp' render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
-          <Route path='/:weddingName/admin' component={Admin} />
+          <Route exact path={`/${this.state.weddingInfo.weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${this.state.weddingInfo.weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${this.state.weddingInfo.weddingName}/registry`} render={() => <Registry weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${this.state.weddingInfo.weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${this.state.weddingInfo.weddingName}/admin`} component={Admin} />
           </Switch>
           </div>
         </Router>
