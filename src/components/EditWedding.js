@@ -5,7 +5,7 @@ import moment from "moment";
 
 import UploadPic from './UploadPic';
 
-class CreateWedding extends React.Component {
+class EditWedding extends React.Component {
   state = {
     weddingName: "",
     partnerFirstNameA: "",
@@ -222,4 +222,4 @@ class CreateWedding extends React.Component {
   }
 }
 
-export default CreateWedding;
+export default EditWedding;
