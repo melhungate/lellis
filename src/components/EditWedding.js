@@ -27,14 +27,18 @@ class CreateWedding extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.weddingInfo._id) {
       const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, startDate, endDate, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic } = nextProps.weddingInfo;
+      var date = moment(nextProps.weddingInfo.startDate).format('YYYY-MM-DD');
+      var startTime = moment(nextProps.weddingInfo.startDate).format('HH:mm');
+      var endTime = moment(nextProps.weddingInfo.endDate).format('HH:mm');
       this.setState({     
         weddingName: weddingName,
         partnerFirstNameA: partnerFirstNameA,
         partnerLastNameA: partnerLastNameA,
         partnerFirstNameB: partnerFirstNameB,
         partnerLastNameB: partnerLastNameB,
-        startDate: startDate, 
-        endDate: endDate, 
+        date: date, 
+        startTime: startTime, 
+        endTime: endTime, 
         addressLine1: addressLine1,
         addressLine2: addressLine2,
         addressLine3: addressLine3,
@@ -64,7 +68,6 @@ class CreateWedding extends React.Component {
     e.preventDefault();
     const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic  } = this.state;
     //const convertedHour = moment(startTime);
-    debugger;
     //startTime.split(":") this will return an array of two elements
     //create copy of date. set hour set minutes
     var eventDate = new Date(date);
@@ -87,7 +90,7 @@ class CreateWedding extends React.Component {
 
     //console.log(endTime);
     axios
-      .put("/weddings", {
+      .put(`/weddings/${this.props.weddingInfo._id}`, {
         weddingName,
         partnerFirstNameA,
         partnerLastNameA,
