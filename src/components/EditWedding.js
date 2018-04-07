@@ -24,6 +24,28 @@ class CreateWedding extends React.Component {
     rsvpPic: ""
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.weddingInfo._id) {
+      const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, startDate, endDate, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic } = nextProps.weddingInfo;
+      this.setState({     
+        weddingName: weddingName,
+        partnerFirstNameA: partnerFirstNameA,
+        partnerLastNameA: partnerLastNameA,
+        partnerFirstNameB: partnerFirstNameB,
+        partnerLastNameB: partnerLastNameB,
+        startDate: startDate, 
+        endDate: endDate, 
+        addressLine1: addressLine1,
+        addressLine2: addressLine2,
+        addressLine3: addressLine3,
+        storyPic: storyPic, 
+        whenWherePic: whenWherePic, 
+        registryPic: registryPic, 
+        rsvpPic: rsvpPic 
+      });      
+    }
+  }
+
   onUploadSuccess = (success, picName) => {
       const url = success.filesUploaded[0].url;
       this.setState({
@@ -65,7 +87,7 @@ class CreateWedding extends React.Component {
 
     //console.log(endTime);
     axios
-      .post("/weddings", {
+      .put("/weddings", {
         weddingName,
         partnerFirstNameA,
         partnerLastNameA,
@@ -92,7 +114,7 @@ class CreateWedding extends React.Component {
         <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Registry Picture" picName="registryPic"/>
         <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "RSVP Picture" picName="rsvpPic"/>
         <h2>Create a New Wedding</h2>
-        <div>
+       <div>
           <input
             onChange={this.handleChange}
             value={this.state.weddingName}
@@ -191,7 +213,6 @@ class CreateWedding extends React.Component {
             placeholder="addressLine3"
           />
         </div>
-        
         <input type="submit" value="Submit" />
       </form>
     );

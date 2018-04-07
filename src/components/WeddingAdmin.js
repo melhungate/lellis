@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Guest from './Guest';
 import CreateGuest from './CreateGuest';
+import EditWedding from './EditWedding';
 
 class WeddingAdmin extends React.Component {
   state = {
@@ -45,10 +46,11 @@ refresh = () => {
   render() {
     return (
       <div>
+        <EditWedding weddingInfo={this.props.weddingInfo}/>
         <h1>Guest List</h1>
         <div className="guests">
           {this.state.guests.map( guest => <Guest key={guest._id}{...guest} />)}
-          </div>
+        </div>
       </div>
     );
   }
