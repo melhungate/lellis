@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactFilestack from 'filestack-react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom';
 
 import Story from './Story';
 import Rsvp from './Rsvp';
@@ -25,7 +25,7 @@ class OurWedding extends React.Component {
         //debugger;
         // store them in state
         console.log(data.payload);
-        this.setState({ weddingInfo: data.payload });
+        this.setState({ weddingInfo: data.payload});
       }
     });
   };
@@ -33,7 +33,7 @@ class OurWedding extends React.Component {
   componentDidMount() {
     this.refresh();
   }
-    
+
   render() {
     return (
         <Router>
@@ -46,7 +46,7 @@ class OurWedding extends React.Component {
           <Link to={`/${this.state.weddingInfo.weddingName}/rsvp`}>RSVP</Link>
         </ul>
         <Switch>
-          <Route exact path={`/${this.state.weddingInfo.weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>} />
+          <Route exact path={`/${this.state.weddingInfo.weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>}/>
           <Route path={`/${this.state.weddingInfo.weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
           <Route path={`/${this.state.weddingInfo.weddingName}/registry`} render={() => <Registry weddingInfo={this.state.weddingInfo}/>} />
           <Route path={`/${this.state.weddingInfo.weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
