@@ -8,6 +8,7 @@ import Rsvp from './Rsvp';
 import WhenWhere from './WhenWhere';
 import Registry from './Registry';
 import Admin from './Admin';
+import WeddingAdmin from './WeddingAdmin';
 import NavigationMenu from './NavigationMenu';
 
 class OurWedding extends React.Component {
@@ -48,7 +49,8 @@ class OurWedding extends React.Component {
           <Route path={`/${this.state.weddingInfo.weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
           <Route path={`/${this.state.weddingInfo.weddingName}/registry`} render={() => <Registry weddingInfo={this.state.weddingInfo}/>} />
           <Route path={`/${this.state.weddingInfo.weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${this.state.weddingInfo.weddingName}/admin`} component={Admin} />
+          <Route path={`/${this.state.weddingInfo.weddingName}/admin`} render={() => <WeddingAdmin weddingInfo={this.state.weddingInfo}/>} />
+          
           </Switch>
           </div>
         </Router>
