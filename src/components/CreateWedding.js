@@ -2,7 +2,7 @@
 import React from "react";
 import axios from "axios";
 import moment from "moment";
-
+import { getToken } from '../services/tokenService.js'
 import UploadPic from './UploadPic';
 
 class CreateWedding extends React.Component {
@@ -61,11 +61,13 @@ class CreateWedding extends React.Component {
     const endMinutes = parseInt(endTimeSplit[1]);
 
     endDate.setHours(endHour);
-    endDate.setMinutes(endMinutes);    
+    endDate.setMinutes(endMinutes);   
+
+    const token = getToken(); 
 
     //console.log(endTime);
     axios
-      .post("/weddings", {
+      .post("/weddings", { 
         weddingName,
         partnerFirstNameA,
         partnerLastNameA,
@@ -80,6 +82,10 @@ class CreateWedding extends React.Component {
         whenWherePic,
         registryPic,
         rsvpPic 
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       })
       .then(alert("success!"));
   };
