@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import Admin from './components/Admin';
 import OurWedding from './components/OurWedding';
+import CreateWedding from './components/CreateWedding';
 
 class Lellis extends Component {
     state = {
@@ -34,7 +35,8 @@ class Lellis extends Component {
         <Router>
         <div>
         <Switch>
-          <Route exact path='/' component={Admin} />
+          <Route exact path='/' component={CreateWedding} />
+          <Route path='/admin' component={Admin}/>
           <Route path='/:weddingName' component={OurWedding} />
           </Switch>
           </div>

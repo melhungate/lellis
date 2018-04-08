@@ -29,7 +29,6 @@ refresh = () => {
   render() {
     return (
       <div>
-          <CreateWedding refresh={this.refresh} />
         <table className="weddings">
           <tbody>
             <tr>

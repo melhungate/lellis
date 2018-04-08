@@ -81,7 +81,7 @@ class CreateWedding extends React.Component {
         registryPic,
         rsvpPic 
       })
-      .then(this.props.refresh);
+      .then(alert("success!"));
   };
 
   render() {
