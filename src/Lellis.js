@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactFilestack from 'filestack-react';
+import './Lellis.css';
 import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom';
 
 import Admin from './components/Admin';
@@ -63,52 +64,8 @@ class Lellis extends Component {
         <Router>
         <div>
         <Switch>
-          <Route
-            exact
-            path="/login"
-            render={props => {
-              return this.state.user ? <Redirect to="/" /> : <Login getCurrentUser={this.getCurrentUser}/>;
-            }}
-          />
-          <Route
-            exact
-            path="/signup"
-            render={() =>
-                this.state.user ? (
-                <Redirect to="/" />
-                ) : (
-                <Signup setUser={this.setUser} />
-                )
-            }
-          />
-          <Route
-            path="/admin"
-            render={() => 
-                this.state.user ? <Admin/> : <Redirect to="/login" />
-            }
-          />
-          <Route
-            exact
-            path="/logout"
-            render={props => {
-              return this.state.user ? (
-                <Logout setUser={this.setUser}/>
-              ) : (
-                <Redirect to="/login" />
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/"
-            render={props => {
-              return this.state.user ? (
-                <CreateWedding user={this.state.user} />
-              ) : (
-                <Redirect to="/login" />
-              );
-            }}
-          />
+          <Route exact path='/' component={CreateWedding} />
+          <Route path='/admin' component={Admin}/>
           <Route path='/:weddingName' component={OurWedding} />
           </Switch>
           </div>

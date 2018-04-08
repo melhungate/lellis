@@ -39,12 +39,12 @@ class OurWedding extends React.Component {
         <Router>
         <div>
         <h1>{this.state.weddingInfo.partnerFirstNameA} {this.state.weddingInfo.partnerLastNameA} & {this.state.weddingInfo.partnerFirstNameB} {this.state.weddingInfo.partnerLastNameB}</h1>
-        <ul> 
-          <Link to={`/${this.state.weddingInfo.weddingName}`}>Our Home</Link>
-          <Link to={`/${this.state.weddingInfo.weddingName}/whenwhere`}>When & Where</Link>
-          <Link to={`/${this.state.weddingInfo.weddingName}/registry`}>Registry</Link>
-          <Link to={`/${this.state.weddingInfo.weddingName}/rsvp`}>RSVP</Link>
-        </ul>
+        <div class="Header-nav"> 
+          <a class="Header-nav-item" href={`/${this.state.weddingInfo.weddingName}`}>Our Home</a>
+          <a class="Header-nav-item" href={`/${this.state.weddingInfo.weddingName}/whenwhere`}>When & Where</a>
+          <a class="Header-nav-item" href={`/${this.state.weddingInfo.weddingName}/registry`}>Registry</a>
+          <a class="Header-nav-item" href={`/${this.state.weddingInfo.weddingName}/rsvp`}>RSVP</a>
+        </div>
         <Switch>
           <Route exact path={`/${this.state.weddingInfo.weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>}/>
           <Route path={`/${this.state.weddingInfo.weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
