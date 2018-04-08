@@ -10,6 +10,7 @@ import Registry from './Registry';
 import Admin from './Admin';
 import Guestlist from './Guestlist';
 import EditWedding from './EditWedding';
+import NavigationMenu from './NavigationMenu';
 
 class OurWedding extends React.Component {
       state = {
@@ -35,23 +36,19 @@ class OurWedding extends React.Component {
   }
 
   render() {
+    const {weddingName} = this.state.weddingInfo;
     return (
         <Router>
         <div>
         <h1>{this.state.weddingInfo.partnerFirstNameA} {this.state.weddingInfo.partnerLastNameA} & {this.state.weddingInfo.partnerFirstNameB} {this.state.weddingInfo.partnerLastNameB}</h1>
-        <div class="Header-nav"> 
-          <a class="Header-nav-item" href={`/${this.state.weddingInfo.weddingName}`}>Our Home</a>
-          <a class="Header-nav-item" href={`/${this.state.weddingInfo.weddingName}/whenwhere`}>When & Where</a>
-          <a class="Header-nav-item" href={`/${this.state.weddingInfo.weddingName}/registry`}>Registry</a>
-          <a class="Header-nav-item" href={`/${this.state.weddingInfo.weddingName}/rsvp`}>RSVP</a>
-        </div>
+        <NavigationMenu weddingName={weddingName} />
         <Switch>
-          <Route exact path={`/${this.state.weddingInfo.weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>}/>
-          <Route path={`/${this.state.weddingInfo.weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${this.state.weddingInfo.weddingName}/registry`} render={() => <Registry weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${this.state.weddingInfo.weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${this.state.weddingInfo.weddingName}/guestlist`} render={() => <Guestlist weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${this.state.weddingInfo.weddingName}/edit`} render={() => <EditWedding weddingInfo={this.state.weddingInfo}/>} />
+          <Route exact path={`/${weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>}/>
+          <Route path={`/${weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${weddingName}/registry`} render={() => <Registry weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${weddingName}/guestlist`} render={() => <Guestlist weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${weddingName}/edit`} render={() => <EditWedding weddingInfo={this.state.weddingInfo}/>} />
           </Switch>
           </div>
         </Router>
