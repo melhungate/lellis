@@ -12,6 +12,7 @@
     "jsonwebtoken": "^8.2.1",
     "moment": "^2.21.0",
     "mongoose": "^5.0.9",
+    "nodemon": "^1.17.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-moment": "^0.7.0",
