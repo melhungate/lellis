@@ -31,8 +31,8 @@ class CreateGuest extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    debugger
     const { firstName, lastName, email, rsvp, plusOne, message } = this.state;
+    debugger
     //const wedding = "5ab8149fb885752250cd531d";
     axios
       .post("/guests", {
@@ -44,7 +44,7 @@ class CreateGuest extends React.Component {
         message,
         wedding : this.props.weddingId
       })
-      .then(this.alert('guest created')); //need to do something on submit, but not sure what yet! 
+      .then(alert('guest created')); //need to do something on submit, but not sure what yet! 
     this.clearInput();
   };
 

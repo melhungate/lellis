@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactFilestack from 'filestack-react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom';
 
 import Story from './Story';
 import Rsvp from './Rsvp';
 import WhenWhere from './WhenWhere';
 import Registry from './Registry';
 import Admin from './Admin';
-import WeddingAdmin from './WeddingAdmin';
-import NavigationMenu from './NavigationMenu';
+import Guestlist from './Guestlist';
+import EditWedding from './EditWedding';
 
 class OurWedding extends React.Component {
       state = {
@@ -25,14 +25,15 @@ class OurWedding extends React.Component {
         //debugger;
         // store them in state
         console.log(data.payload);
-        this.setState({ weddingInfo: data.payload });
+        this.setState({ weddingInfo: data.payload});
       }
     });
   };
 
-    componentDidMount() {
-      this.refresh();
-    }
+  componentDidMount() {
+    this.refresh();
+  }
+
   render() {
     return (
         <Router>
@@ -45,12 +46,12 @@ class OurWedding extends React.Component {
           <Link to={`/${this.state.weddingInfo.weddingName}/rsvp`}>RSVP</Link>
         </ul>
         <Switch>
-          <Route exact path={`/${this.state.weddingInfo.weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>} />
+          <Route exact path={`/${this.state.weddingInfo.weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>}/>
           <Route path={`/${this.state.weddingInfo.weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
           <Route path={`/${this.state.weddingInfo.weddingName}/registry`} render={() => <Registry weddingInfo={this.state.weddingInfo}/>} />
           <Route path={`/${this.state.weddingInfo.weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${this.state.weddingInfo.weddingName}/admin`} render={() => <WeddingAdmin weddingInfo={this.state.weddingInfo}/>} />
-          
+          <Route path={`/${this.state.weddingInfo.weddingName}/guestlist`} render={() => <Guestlist weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${this.state.weddingInfo.weddingName}/edit`} render={() => <EditWedding weddingInfo={this.state.weddingInfo}/>} />
           </Switch>
           </div>
         </Router>

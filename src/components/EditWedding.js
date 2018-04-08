@@ -5,7 +5,7 @@ import moment from "moment";
 
 import UploadPic from './UploadPic';
 
-class CreateWedding extends React.Component {
+class EditWedding extends React.Component {
   state = {
     weddingName: "",
     partnerFirstNameA: "",
@@ -23,6 +23,32 @@ class CreateWedding extends React.Component {
     registryPic: "",
     rsvpPic: ""
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.weddingInfo._id) {
+      const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, startDate, endDate, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic } = nextProps.weddingInfo;
+      var date = moment(nextProps.weddingInfo.startDate).format('YYYY-MM-DD');
+      var startTime = moment(nextProps.weddingInfo.startDate).format('HH:mm');
+      var endTime = moment(nextProps.weddingInfo.endDate).format('HH:mm');
+      this.setState({     
+        weddingName: weddingName,
+        partnerFirstNameA: partnerFirstNameA,
+        partnerLastNameA: partnerLastNameA,
+        partnerFirstNameB: partnerFirstNameB,
+        partnerLastNameB: partnerLastNameB,
+        date: date, 
+        startTime: startTime, 
+        endTime: endTime, 
+        addressLine1: addressLine1,
+        addressLine2: addressLine2,
+        addressLine3: addressLine3,
+        storyPic: storyPic, 
+        whenWherePic: whenWherePic, 
+        registryPic: registryPic, 
+        rsvpPic: rsvpPic 
+      });      
+    }
+  }
 
   onUploadSuccess = (success, picName) => {
       const url = success.filesUploaded[0].url;
@@ -42,7 +68,6 @@ class CreateWedding extends React.Component {
     e.preventDefault();
     const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic  } = this.state;
     //const convertedHour = moment(startTime);
-    debugger;
     //startTime.split(":") this will return an array of two elements
     //create copy of date. set hour set minutes
     var eventDate = new Date(date);
@@ -65,7 +90,7 @@ class CreateWedding extends React.Component {
 
     //console.log(endTime);
     axios
-      .post("/weddings", {
+      .put(`/weddings/${this.props.weddingInfo._id}`, {
         weddingName,
         partnerFirstNameA,
         partnerLastNameA,
@@ -81,7 +106,7 @@ class CreateWedding extends React.Component {
         registryPic,
         rsvpPic 
       })
-      .then(alert("success!"));
+      .then(this.props.refresh);
   };
 
   render() {
@@ -92,7 +117,7 @@ class CreateWedding extends React.Component {
         <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Registry Picture" picName="registryPic"/>
         <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "RSVP Picture" picName="rsvpPic"/>
         <h2>Create a New Wedding</h2>
-        <div>
+       <div>
           <input
             onChange={this.handleChange}
             value={this.state.weddingName}
@@ -191,11 +216,10 @@ class CreateWedding extends React.Component {
             placeholder="addressLine3"
           />
         </div>
-        
         <input type="submit" value="Submit" />
       </form>
     );
   }
 }
 
-export default CreateWedding;
+export default EditWedding;

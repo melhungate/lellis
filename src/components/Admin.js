@@ -29,10 +29,27 @@ refresh = () => {
   render() {
     return (
       <div>
-          <CreateWedding refresh={this.refresh} />
-        <div className="weddings">
-          {this.state.weddings.map( wedding => <Wedding key={wedding._id}{...wedding} />)}
-          </div>
+        <table className="weddings">
+          <tbody>
+            <tr>
+                <th>weddingName</th>
+                <th>partnerFirstNameA</th>
+                <th>partnerLastNameA</th>
+                <th>partnerFirstNameB</th>
+                <th>partnerLastNameB</th>
+                <th>startDate</th>
+                <th>endDate</th>
+                <th>addressLine1</th>
+                <th>addressLine2</th>
+                <th>addressLine3</th>
+                <th>storyPic</th> 
+                <th>whenWherePic</th>
+                <th>registryPic</th>
+                <th>rsvpPic</th>
+            </tr>
+            {this.state.weddings.map( wedding => <Wedding key={wedding._id}{...wedding} />)}
+          </tbody>
+        </table>
       </div>
     );
   }
