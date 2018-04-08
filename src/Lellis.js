@@ -59,13 +59,56 @@ class Lellis extends Component {
     }
 
   render() {
-   
-      return (
-        <Router>
+      if (this.state.loading) return <div>Loading...</div>
+      return ( <Router>
         <div>
         <Switch>
-          <Route exact path='/' component={CreateWedding} />
-          <Route path='/admin' component={Admin}/>
+          <Route
+            exact
+            path="/login"
+            render={props => {
+              return this.state.user ? <Redirect to="/" /> : <Login getCurrentUser={this.getCurrentUser}/>;
+            }}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={() =>
+                this.state.user ? (
+                <Redirect to="/" />
+                ) : (
+                <Signup setUser={this.setUser} />
+                )
+            }
+          />
+          <Route
+            path="/admin"
+            render={() => 
+                this.state.user ? <Admin/> : <Redirect to="/login" />
+            }
+          />
+          <Route
+            exact
+            path="/logout"
+            render={props => {
+              return this.state.user ? (
+                <Logout setUser={this.setUser}/>
+              ) : (
+                <Redirect to="/login" />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/"
+            render={props => {
+              return this.state.user ? (
+                <CreateWedding user={this.state.user} />
+              ) : (
+                <Redirect to="/login" />
+              );
+            }}
+          />
           <Route path='/:weddingName' component={OurWedding} />
           </Switch>
           </div>
