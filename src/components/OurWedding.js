@@ -40,7 +40,6 @@ class OurWedding extends React.Component {
     return (
         <Router>
         <div>
-        <h1>{this.state.weddingInfo.partnerFirstNameA} {this.state.weddingInfo.partnerLastNameA} & {this.state.weddingInfo.partnerFirstNameB} {this.state.weddingInfo.partnerLastNameB}</h1>
         <NavigationMenu weddingName={weddingName} />
         <Switch>
           <Route exact path={`/${weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>}/>
