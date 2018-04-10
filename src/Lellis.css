@@ -125,6 +125,19 @@ a:active,a:focus{
     outline:0
 }
 
+.Header-inner{
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:-webkit-flex;
+    display:flex;
+    justify-content: center;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    padding-left:46px;
+    padding-right:46px;
+    align-items: center;
+}
 .Header-nav{
     font-family:Arial,Helvetica,sans-serif;
     font-weight:700;
@@ -139,5 +152,81 @@ a:active,a:focus{
 }
 
 .Header-nav-inner{
-    margin:-.618em -2em
+    margin:-.618em -2em;
+    -webkit-transition:color 170ms ease-in-out, background-color 170ms ease-in-out;
+    -moz-transition:color 170ms ease-in-out, background-color 170ms ease-in-out;
+    -ms-transition:color 170ms ease-in-out, background-color 170ms ease-in-out;
+    -o-transition:color 170ms ease-in-out, background-color 170ms ease-in-out;
+    transition:color 170ms ease-in-out, background-color 170ms ease-in-out
+}
+
+.Header-nav-item{
+    margin:0 2em;
+    padding:.618em 0
+}
+
+.align-right{
+    text-align: right;
+    justify-content: flex-end;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    max-width: 100%
+}
+
+.align-left{
+    text-align: left;
+    justify-content: flex-start;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    max-width: 100%
+}
+
+
+@media screen and (max-width:960px){
+    .Header-inner{
+        padding-left:33px;
+        padding-right:33px
+    }
+}
+@media screen and (max-width:768px){
+    .Header-inner{
+        padding-left:21px;
+        padding-right:21px
+    }
+}
+@media screen and (max-width:640px){
+    .Header-inner{
+        padding-left:5px;
+        padding-right:5px
+    }
+}
+.Header--top{
+    display:none;
+    background:#fafafa;
+    -webkit-font-smoothing:subpixel-antialiased;
+    -moz-osx-font-smoothing:auto
+}
+.Header-inner--top{
+    padding-top:20px;
+    padding-bottom:20px
+}
+
+.Header-branding{
+    font-family:Arial,Helvetica,sans-serif;
+    font-weight:700;
+    font-size:27px;
+    letter-spacing:0em;
+    line-height:1em;
+    font-family:Montserrat;
+    font-weight:400;
+    font-style:normal;
+    font-size:17px;
+    letter-spacing:.25em;
+    line-height:1.4em;
+    text-transform:uppercase;
+    color:#000
 }
