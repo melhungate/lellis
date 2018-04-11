@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-ro
 import Admin from './components/Admin';
 import OurWedding from './components/OurWedding';
 import CreateWedding from './components/CreateWedding';
+import WeddingAdmin from './components/WeddingAdmin';
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Logout from "./components/Logout";
@@ -109,6 +110,7 @@ class Lellis extends Component {
               );
             }}
           />
+          <Route path='/:weddingName/admin' component={WeddingAdmin} />
           <Route path='/:weddingName' component={OurWedding} />
           </Switch>
           </div>

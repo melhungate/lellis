@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const NavigationMenu = ({ weddingName }) => (
   //@mel FIND OUT WHY THIS DOESN'T WORK - LINK WOULD CHANGE BUT IT WOULDNT LOAD PAGE
-  	<div class="Header-inner Header-inner--top">
+  	<div className="Header-inner Header-inner--top">
   		<div className="align-left">
 	  	  <div className="Header-nav"> 
 	      	<div className="Header-nav-inner">
