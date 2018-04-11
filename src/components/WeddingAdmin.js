@@ -3,14 +3,11 @@ import axios from "axios";
 import ReactFilestack from 'filestack-react';
 import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom';
 
-import Story from './Story';
-import Rsvp from './Rsvp';
-import WhenWhere from './WhenWhere';
-import Registry from './Registry';
-import Admin from './Admin';
+import Guestlist from './Guestlist';
+import EditWedding from './EditWedding';
 import NavigationMenu from './NavigationMenu';
 
-class OurWedding extends React.Component {
+class WeddingAdmin extends React.Component {
       state = {
       weddingInfo: {}
     }
@@ -40,10 +37,8 @@ class OurWedding extends React.Component {
         <div>
         <NavigationMenu weddingName={weddingName} />
         <Switch>
-          <Route exact path={`/${weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>}/>
-          <Route path={`/${weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${weddingName}/registry`} render={() => <Registry weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${weddingName}/admin/guestlist`} render={() => <Guestlist weddingInfo={this.state.weddingInfo}/>} />
+          <Route path={`/${weddingName}/admin`} render={() => <EditWedding weddingInfo={this.state.weddingInfo}/>} />
           </Switch>
           </div>
         </Router>
@@ -51,4 +46,4 @@ class OurWedding extends React.Component {
   }
 }
 
-export default OurWedding;
+export default WeddingAdmin;
