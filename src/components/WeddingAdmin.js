@@ -6,10 +6,16 @@ import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-ro
 import Guestlist from './Guestlist';
 import EditWedding from './EditWedding';
 import NavigationMenu from './NavigationMenu';
+import Login from "./Login";
+import Signup from "./Signup";
+import Logout from "./Logout";
+import { getToken } from "../services/tokenService";
+import CreateWedding from './CreateWedding';
 
 class WeddingAdmin extends React.Component {
       state = {
-      weddingInfo: {}
+      weddingInfo: {},
+      loading: true
     }
 
   refresh = () => {
@@ -25,21 +31,84 @@ class WeddingAdmin extends React.Component {
       }
     });
   };
+  setUser = user => {
+    this.setState({ user });
+    this.setState({loading: false})
+  };
 
+  getCurrentUser = () => {
+    const token = getToken();
+    if (token) {
+      axios
+        .get("/user/current", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(res => {
+          if (res.status === 200) {
+            const user = res.data.payload;
+            this.setUser(user);
+          }
+        });
+    } else {
+      this.setState({loading: false})
+    }
+  };
   componentDidMount() {
     this.refresh();
+    this.getCurrentUser();
   }
 
   render() {
+    if (this.state.loading) return <div>Loading...</div>
     const {weddingName} = this.state.weddingInfo;
     return (
         <Router>
         <div>
         <NavigationMenu weddingName={weddingName} />
         <Switch>
-          <Route path={`/${weddingName}/admin/guestlist`} render={() => <Guestlist weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${weddingName}/admin`} render={() => <EditWedding weddingInfo={this.state.weddingInfo}/>} />
-          </Switch>
+          <Route
+            exact
+            path={`/${weddingName}/admin/login`}
+            render={props => {
+              return this.state.user ? <Redirect to={`/${weddingName}/admin`} /> : <Login getCurrentUser={this.getCurrentUser}/>;
+            }}
+          />
+          <Route
+            exact
+            path={`/${weddingName}/admin/logout`}
+            render={props => {
+              return this.state.user ? (
+                <Logout setUser={this.setUser}/>
+              ) : (
+                <Redirect to={`/${weddingName}/admin/login`} />
+              );
+            }}
+          />
+          <Route
+            exact
+            path={`/${weddingName}/admin/guestlist`}
+            render={props => {
+              return this.state.user ? (
+                <Guestlist weddingInfo={this.state.weddingInfo}/>
+              ) : (
+                <Redirect to={`/${weddingName}/admin/login`} />
+              );
+            }}
+          />
+          <Route
+            exact
+            path={`/${weddingName}/admin`}
+            render={props => {
+              return this.state.user ? (
+                <EditWedding weddingInfo={this.state.weddingInfo}/>
+              ) : (
+                <Redirect to={`/${weddingName}/admin/login`} />
+              );
+            }}
+          />
+         </Switch>
           </div>
         </Router>
     );
