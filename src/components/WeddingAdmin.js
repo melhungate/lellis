@@ -49,6 +49,9 @@ class WeddingAdmin extends React.Component {
             const user = res.data.payload;
             this.setUser(user);
           }
+        })
+        .catch(err => {
+          this.setState({loading: false})
         });
     } else {
       this.setState({loading: false})

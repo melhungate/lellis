@@ -90,14 +90,11 @@ class CreateWedding extends React.Component {
           Authorization: `Bearer ${token}`
         }
       })
-      .then(this.setState({fireRedirect: true}));
+      .then(this.props.setWeddingName(this.state.weddingName));
   };
 
   render() {
-    const { from } = this.props.location.state || '/'
-    const { fireRedirect } = this.state
     return (
-      <Router>
       <div>
       <form onSubmit={this.handleSubmit}>
         <h2>Create a New Wedding</h2>
@@ -207,9 +204,8 @@ class CreateWedding extends React.Component {
         
         <input type="submit" value="Submit" />
       </form>
-        <Route path={`/${this.state.weddingName}`} component={OurWedding} />
       </div>
-      </Router>
+      
     );
   }
 }

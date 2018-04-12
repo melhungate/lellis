@@ -11,7 +11,9 @@ import CreateWedding from './components/CreateWedding';
 
 class Lellis extends Component {
     state = {
-      weddings: []
+      weddings: [],
+      fireRedirect: false,
+      newWeddingName: ""
     }
 
   refresh = () => {
@@ -28,13 +30,35 @@ class Lellis extends Component {
     this.refresh();
   }
 
+  fireRedirect = () => {
+    console.log("im firing");
+    this.setState({fireRedirect: true})
+  };
+
+  setWeddingName = (newWeddingName) => {
+    console.log("new wedding");
+    console.log(newWeddingName);
+    this.setState({newWeddingName: newWeddingName})
+    this.setState({fireRedirect: true})
+  };
+
+
   render() {
       return ( <Router>
         <div>
         <Switch>
           <Route exact path="/" component={Admin} />
           <Route exact path='/signup' component={Signup} />
-          <Route path='/signup/info' component={CreateWedding} />
+          <Route
+            path={'/signup/info'}
+            render={props => {
+              return this.state.fireRedirect ? (
+                <Redirect to={`/${this.state.newWeddingName}`}/>
+              ) : (
+                <CreateWedding fireRedirect={this.fireRedirect} setWeddingName={this.setWeddingName} />
+              );
+            }}
+          />
           <Route path='/:weddingName/admin' component={WeddingAdmin} />
           <Route path='/:weddingName' component={OurWedding} />
           </Switch>
