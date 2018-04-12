@@ -42,7 +42,7 @@ class CreateWedding extends React.Component {
     e.preventDefault();
     const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic  } = this.state;
     //const convertedHour = moment(startTime);
-    debugger;
+    
     //startTime.split(":") this will return an array of two elements
     //create copy of date. set hour set minutes
     var eventDate = new Date(date);
@@ -87,7 +87,7 @@ class CreateWedding extends React.Component {
           Authorization: `Bearer ${token}`
         }
       })
-      .then(alert("success!"));
+      .then();
   };
 
   render() {

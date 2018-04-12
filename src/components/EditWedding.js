@@ -2,6 +2,7 @@
 import React from "react";
 import axios from "axios";
 import moment from "moment";
+import { getToken } from '../services/tokenService.js'
 
 import UploadPic from './UploadPic';
 
@@ -67,6 +68,7 @@ class EditWedding extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic  } = this.state;
+    const token = getToken(); 
     //const convertedHour = moment(startTime);
     //startTime.split(":") this will return an array of two elements
     //create copy of date. set hour set minutes
@@ -105,6 +107,10 @@ class EditWedding extends React.Component {
         whenWherePic,
         registryPic,
         rsvpPic 
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       })
       .then(this.props.refresh);
   };
