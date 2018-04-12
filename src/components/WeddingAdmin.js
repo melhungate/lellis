@@ -10,7 +10,6 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Logout from "./Logout";
 import { getToken } from "../services/tokenService";
-import CreateWedding from './CreateWedding';
 
 class WeddingAdmin extends React.Component {
       state = {

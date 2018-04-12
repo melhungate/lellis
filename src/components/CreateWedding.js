@@ -4,6 +4,8 @@ import axios from "axios";
 import moment from "moment";
 import { getToken } from '../services/tokenService.js'
 import UploadPic from './UploadPic';
+import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom';
+import OurWedding from './OurWedding';
 
 class CreateWedding extends React.Component {
   state = {
@@ -21,7 +23,8 @@ class CreateWedding extends React.Component {
     storyPic: "",
     whenWherePic: "",
     registryPic: "",
-    rsvpPic: ""
+    rsvpPic: "",
+    fireRedirect: false
   };
 
   onUploadSuccess = (success, picName) => {
@@ -87,11 +90,15 @@ class CreateWedding extends React.Component {
           Authorization: `Bearer ${token}`
         }
       })
-      .then();
+      .then(this.setState({fireRedirect: true}));
   };
 
   render() {
+    const { from } = this.props.location.state || '/'
+    const { fireRedirect } = this.state
     return (
+      <Router>
+      <div>
       <form onSubmit={this.handleSubmit}>
         <h2>Create a New Wedding</h2>
         <div>
@@ -200,6 +207,9 @@ class CreateWedding extends React.Component {
         
         <input type="submit" value="Submit" />
       </form>
+        <Route path={`/${this.state.weddingName}`} component={OurWedding} />
+      </div>
+      </Router>
     );
   }
 }
