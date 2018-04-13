@@ -23,8 +23,17 @@ class Signup extends Component {
       })
       .then(res => {
         if (res.status === 200) {
-          const token = res.data.payload;
-          setToken(token);
+          axios
+            .post("/auth/login", {
+              email,
+              password
+            })
+            .then(res => {
+              if (res.status === 200) {
+                const token = res.data.payload;
+                setToken(token);
+              }
+            });
           this.setState({ fireRedirect: true });
          // this.props.getCurrentUser();
         }
@@ -62,7 +71,7 @@ class Signup extends Component {
           </div>
         </form>
         {fireRedirect && (
-          <Redirect to={from || 'signup/info'}/>
+          <Redirect to={from || '/signup/info'}/>
         )}
         </div>
     );

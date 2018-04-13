@@ -53,7 +53,7 @@ class Lellis extends Component {
             path={'/signup/info'}
             render={props => {
               return this.state.fireRedirect ? (
-                <Redirect to={`/${this.state.newWeddingName}`}/>
+                <Redirect to={`/${this.state.newWeddingName}`} component={OurWedding}/>
               ) : (
                 <CreateWedding fireRedirect={this.fireRedirect} setWeddingName={this.setWeddingName} />
               );
