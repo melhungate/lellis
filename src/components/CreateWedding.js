@@ -4,6 +4,8 @@ import axios from "axios";
 import moment from "moment";
 import { getToken } from '../services/tokenService.js'
 import UploadPic from './UploadPic';
+import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom';
+import OurWedding from './OurWedding';
 
 class CreateWedding extends React.Component {
   state = {
@@ -21,7 +23,8 @@ class CreateWedding extends React.Component {
     storyPic: "",
     whenWherePic: "",
     registryPic: "",
-    rsvpPic: ""
+    rsvpPic: "",
+    fireRedirect: false
   };
 
   onUploadSuccess = (success, picName) => {
@@ -42,7 +45,7 @@ class CreateWedding extends React.Component {
     e.preventDefault();
     const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic  } = this.state;
     //const convertedHour = moment(startTime);
-    debugger;
+    
     //startTime.split(":") this will return an array of two elements
     //create copy of date. set hour set minutes
     var eventDate = new Date(date);
@@ -87,16 +90,13 @@ class CreateWedding extends React.Component {
           Authorization: `Bearer ${token}`
         }
       })
-      .then(alert("success!"));
+      .then(this.props.setWeddingName(this.state.weddingName));
   };
 
   render() {
     return (
+      <div>
       <form onSubmit={this.handleSubmit}>
-        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Our Story Picture" picName="storyPic"/>
-        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "When & Where Picture" picName="whenWherePic"/>
-        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Registry Picture" picName="registryPic"/>
-        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "RSVP Picture" picName="rsvpPic"/>
         <h2>Create a New Wedding</h2>
         <div>
           <input
@@ -197,9 +197,15 @@ class CreateWedding extends React.Component {
             placeholder="addressLine3"
           />
         </div>
+        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Our Story Picture" picName="storyPic"/>
+        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "When & Where Picture" picName="whenWherePic"/>
+        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Registry Picture" picName="registryPic"/>
+        <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "RSVP Picture" picName="rsvpPic"/>
         
         <input type="submit" value="Submit" />
       </form>
+      </div>
+      
     );
   }
 }

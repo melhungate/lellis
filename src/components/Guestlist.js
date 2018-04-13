@@ -3,6 +3,7 @@ import axios from "axios";
 import Guest from './Guest';
 import CreateGuest from './CreateGuest';
 import EditWedding from './EditWedding';
+import { getToken } from '../services/tokenService.js';
 
 class Guestlist extends React.Component {
   state = {
@@ -10,13 +11,16 @@ class Guestlist extends React.Component {
   }
 
   refresh = () => {
-    // get all weddings from the backend 
-    axios.get(`/guests/${this.props.weddingInfo._id}`).then(res => {
+    const token = getToken(); 
+    axios
+    .get(`/guests/${this.props.weddingInfo._id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+    .then(res => {
       const data = res.data;
-      // if blog guests come back
       if (data.payload) {
-        //debugger;
-        // store them in state
         console.log(data.payload);
         this.setState({ guests: data.payload });
       }
@@ -26,20 +30,24 @@ class Guestlist extends React.Component {
 
   componentWillReceiveProps(nextProps) {
      if (nextProps.weddingInfo._id) {
-         axios.get(`/guests/${nextProps.weddingInfo._id}`)
-           .then(res => {
-              const data = res.data;
-              // if blog guests come back
-              if (data.payload) {
-                // store them in state
-                this.setState({ guests: data.payload });
-              }
-            });
+      const token = getToken(); 
+       axios
+       .get(`/guests/${nextProps.weddingInfo._id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+       .then(res => {
+          const data = res.data;
+          if (data.payload) {
+            this.setState({ guests: data.payload });
+          }
+        });
      }
   }
 
   componentDidMount() {
-    this.refresh();
+    this.refresh(); //@mel do i still need this when im using componentWillReceiveProps?
   }
 
   render() {

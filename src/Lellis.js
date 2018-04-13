@@ -3,110 +3,59 @@ import axios from "axios";
 import ReactFilestack from 'filestack-react';
 import './Lellis.css';
 import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom';
-
+import Signup from "./components/Signup";
 import Admin from './components/Admin';
 import OurWedding from './components/OurWedding';
-import CreateWedding from './components/CreateWedding';
 import WeddingAdmin from './components/WeddingAdmin';
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Logout from "./components/Logout";
-import { getToken } from "./services/tokenService";
+import CreateWedding from './components/CreateWedding';
 
 class Lellis extends Component {
     state = {
       weddings: [],
-      user: null
+      fireRedirect: false,
+      newWeddingName: ""
     }
 
   refresh = () => {
     // get all weddings from the backend 
     axios.get("/weddings").then(res => {
       const data = res.data;
-      // if blog guests come back
       if (data.payload) {
-        //debugger;
-        // store them in state
         this.setState({ weddings: data.payload });
       }
     });
   };
 
-  setUser = user => {
-    this.setState({ user });
+  componentDidMount() {
+    this.refresh();
+  }
+
+  fireRedirect = () => {
+    console.log("im firing");
+    this.setState({fireRedirect: true})
   };
 
-  getCurrentUser = () => {
-    const token = getToken();
-    if (token) {
-      axios
-        .get("/user/current", {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-        .then(res => {
-          if (res.status === 200) {
-            const user = res.data.payload;
-            this.setUser(user);
-          }
-        });
-    }
+  setWeddingName = (newWeddingName) => {
+    console.log("new wedding");
+    console.log(newWeddingName);
+    this.setState({newWeddingName: newWeddingName})
+    this.setState({fireRedirect: true})
   };
 
-    componentDidMount() {
-      this.refresh();
-      this.getCurrentUser();
-    }
 
   render() {
-      if (this.state.loading) return <div>Loading...</div>
       return ( <Router>
         <div>
         <Switch>
+          <Route exact path="/" component={Admin} />
+          <Route exact path='/signup' component={Signup} />
           <Route
-            exact
-            path="/login"
+            path={'/signup/info'}
             render={props => {
-              return this.state.user ? <Redirect to="/" /> : <Login getCurrentUser={this.getCurrentUser}/>;
-            }}
-          />
-          <Route
-            exact
-            path="/signup"
-            render={() =>
-                this.state.user ? (
-                <Redirect to="/" />
-                ) : (
-                <Signup setUser={this.setUser} />
-                )
-            }
-          />
-          <Route
-            path="/admin"
-            render={() => 
-                this.state.user ? <Admin/> : <Redirect to="/login" />
-            }
-          />
-          <Route
-            exact
-            path="/logout"
-            render={props => {
-              return this.state.user ? (
-                <Logout setUser={this.setUser}/>
+              return this.state.fireRedirect ? (
+                <Redirect to={`/${this.state.newWeddingName}`} component={OurWedding}/>
               ) : (
-                <Redirect to="/login" />
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/"
-            render={props => {
-              return this.state.user ? (
-                <CreateWedding user={this.state.user} />
-              ) : (
-                <Redirect to="/login" />
+                <CreateWedding fireRedirect={this.fireRedirect} setWeddingName={this.setWeddingName} />
               );
             }}
           />
