@@ -59,7 +59,6 @@ class Lellis extends Component {
               );
             }}
           />
-          <Route path='/:weddingName/admin' component={WeddingAdmin} />
           <Route path='/:weddingName' component={OurWedding} />
           </Switch>
           </div>
