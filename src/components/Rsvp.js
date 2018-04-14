@@ -17,9 +17,13 @@ class Rsvp extends React.Component {
           </ReactCSSTransitionGroup>       
           <h1 className="centered">RSVP</h1>
         </div>
-        <h2>We're so excited to celebrate with you!</h2>
-        <h3>Kindly response by ...@mel - INSERT RSVP DEADLINE DATE HERE</h3>
+        <div className="main-content">
+        <div className="form-title-div">
+          <h2 className="text-align-center">We're so excited to celebrate with you!</h2>
+          <h3 className="text-align-center">Kindly respond by ...@mel - INSERT RSVP DEADLINE DATE HERE</h3>
+        </div>
         <CreateGuest weddingId={this.props.weddingInfo._id}/>
+        </div>
       </div>
     );
   }
