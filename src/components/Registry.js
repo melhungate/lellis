@@ -1,11 +1,19 @@
 import React from "react";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const Registry = ({weddingInfo}) => {
     return (
         <div>
-            <h1>Registry</h1>
-    		<img src={weddingInfo.registryPic} alt="Registry Picture"/>
-        </div>
+	        <div className="photo-container">
+	   	    <ReactCSSTransitionGroup
+	          	transitionName="fade"
+	          	transitionAppear={true}
+	          	transitionAppearTimeout={700}>
+        		<img src={weddingInfo.registryPic} className="cover" alt="Registry Picture"/>
+	        </ReactCSSTransitionGroup>
+	            <h1 className="centered">Registry</h1>
+	        </div>
+	    </div>
     )
 }
 

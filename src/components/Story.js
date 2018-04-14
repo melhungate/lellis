@@ -1,14 +1,20 @@
 import React from "react";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const Story = ({weddingInfo}) => {
 	console.log(weddingInfo);
 
     return (
-        <div>
-        	<h1>Our Story</h1>
-			<p>{weddingInfo.partnerFirstNameA} {weddingInfo.partnerLastNameA} & {weddingInfo.partnerFirstNameB} {weddingInfo.partnerLastNameB}</p>
-			<img src={weddingInfo.storyPic} alt="Our Story Picture"/>
+        <div className="photo-container" >
+	   	    <ReactCSSTransitionGroup
+	          	transitionName="fade"
+	          	transitionAppear={true}
+	          	transitionAppearTimeout={700}>
+        		<img src={weddingInfo.storyPic}  className="cover" alt="Story Picture"/>
+	        </ReactCSSTransitionGroup>
+        	<h1 className="centered">{weddingInfo.partnerFirstNameA} & {weddingInfo.partnerFirstNameB}</h1>
         </div>
+			
     )
 }
 
