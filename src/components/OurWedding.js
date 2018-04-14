@@ -7,6 +7,7 @@ import Story from './Story';
 import Rsvp from './Rsvp';
 import WhenWhere from './WhenWhere';
 import Registry from './Registry';
+import WeddingAdmin from './WeddingAdmin';
 import Admin from './Admin';
 import NavigationMenu from './NavigationMenu';
 
@@ -44,7 +45,8 @@ class OurWedding extends React.Component {
           <Route path={`/${weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
           <Route path={`/${weddingName}/registry`} render={() => <Registry weddingInfo={this.state.weddingInfo}/>} />
           <Route path={`/${weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
-          </Switch>
+          <Route path={`/${weddingName}/admin`} render={() => <WeddingAdmin weddingInfo={this.state.weddingInfo} refresh={this.refresh}/>} />
+        </Switch>
           </div>
         </Router>
     );
