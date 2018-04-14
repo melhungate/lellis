@@ -127,10 +127,6 @@ h3 a:hover{
         -ms-hyphens:auto;
         hyphens:auto
     }
-    .main-content {
-    padding-left: 20px;
-    padding-right: 20px;
-    }
 }
 a{
     color:inherit;
@@ -138,6 +134,18 @@ a{
 }
 a:active,a:focus{
     outline:0
+}
+
+em {
+    font-style: italic;
+}
+hr { 
+  border: 0; 
+  height: 0.2px; 
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
 }
 
 .main-content {
@@ -162,18 +170,59 @@ a:active,a:focus{
 .form-div{
     position: relative;
     margin: 0 0 24px;
-    background-color: red
 }
 
 .field{
-    width: 48%;
+    width: 49%;
     display: inline-block;
+}
+
+.field.left{
+    margin-right: 1%;
+}
+
+.field.right{
+    float: right;
 }
 
 .form-label{
     display: block;
-    background-color: blue;
     font-family: ff-meta-serif-web-pro;
+}
+
+.button-wrapper{
+    text-align: center
+}
+.button{
+    align-items: flex-start;
+    display: inline-block;
+    text-align: center;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #000;
+    height: auto;
+    width: auto;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    border: 2px solid #000;
+    text-transform: uppercase;
+    padding: 1em 2.5em;
+}
+
+.button:hover{
+    background-color: #000;
+    color: #fff;
+}
+
+@media screen and (max-width:640px){
+    .main-content {
+    padding-left: 20px;
+    padding-right: 20px;
+    }
+    .form-block{
+        width: 90%;
+    }
 }
 
 input {
@@ -189,21 +238,17 @@ input {
 input.small {
     width: 100%;
     line-height: normal;
-    background-color: green;
-    margin-right: 2%;
     float: left;
 }
 
 input.large {
     width: 100%;
     line-height: normal;
-    background-color: yellow;
 }
 
 input.box {
     width: 100%;
     line-height: normal;
-    background-color: yellow;
     min-height: 100px;
     resize: vertical;
 }
@@ -350,4 +395,8 @@ input.box {
     line-height:1.4em;
     text-transform:uppercase;
     color:#000
+}
+
+.hidden {
+    display: none;
 }

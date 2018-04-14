@@ -9,7 +9,8 @@ class CreateGuest extends React.Component {
     email: "",
     rsvp: "",
     plusOne: "",
-    message: ""
+    message: "",
+    formSubmitted: false
   };
 
   handleChange = e => {
@@ -29,11 +30,14 @@ class CreateGuest extends React.Component {
     });
   };
 
+  sayThanks = () => {
+    this.setState({ 
+      formSubmitted: true
+    });
+  };
   handleSubmit = e => {
     e.preventDefault();
     const { firstName, lastName, email, rsvp, plusOne, message } = this.state;
-    debugger
-    //const wedding = "5ab8149fb885752250cd531d";
     axios
       .post("/guests", {
         firstName,
@@ -44,15 +48,16 @@ class CreateGuest extends React.Component {
         message,
         wedding : this.props.weddingId
       })
-      .then(alert('guest created')); //need to do something on submit, but not sure what yet! 
+      .then(this.sayThanks()); 
     this.clearInput();
   };
 
   render() {
+    const formSubmitted = this.state.formSubmitted;
     return (
       <form className="form-block" onSubmit={this.handleSubmit}>
         <div className="form-div">
-          <div className="field">
+          <div className="field left">
             <label className="form-label">First Name</label>
             <input
               className="small"
@@ -62,7 +67,7 @@ class CreateGuest extends React.Component {
               type="text"
             />
           </div>
-          <div className="field">
+          <div className="field right">
             <label className="form-label">Last Name</label>
             <input
               className="small"
@@ -113,7 +118,10 @@ class CreateGuest extends React.Component {
             type="text"
           />
         </div>
-        <input type="submit" value="Submit" />
+        <div className="button-wrapper">
+          <input className="button" type="submit" value="Submit" />
+          <div className={formSubmitted? "": "hidden"}>Thank you!</div>
+        </div>
       </form>
     );
   }

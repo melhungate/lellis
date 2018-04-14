@@ -38,15 +38,24 @@ class WhenWhere extends React.Component {
 			   		<h1 className="centered">{this.state.displayDay}</h1>
 
 		        </div>
-		        <h2 className="text-align-center">Ceremony and Reception</h2>
-				<h3 className="text-align-center">{this.state.weddingDay}</h3>
-				<h3 className="text-align-center">{this.state.startTime} - {this.state.endTime}</h3>
-				<p>{this.props.weddingInfo.addressLine1}</p>
-				<p>{this.props.weddingInfo.addressLine2}</p>
-				<p>{this.props.weddingInfo.addressLine3}</p>
-				<h2 className="text-align-center">Ceremony and Reception</h2>
-				<h3 className="text-align-center">Group rates are available at both hotels. Just mention our names</h3>
-				<p>@mel INSERT ACCOMMODATIONS INFO HERE</p>
+		        <div className="main-content">
+			        <h2 className="text-align-center">Ceremony and Reception</h2>
+					<h3 className="text-align-center">{this.state.weddingDay}</h3>
+					<h3 className="text-align-center">{this.state.startTime} - {this.state.endTime}</h3>
+					<p className="text-align-center">
+					 	<em>{this.props.weddingInfo.addressLine1}</em>
+					 	<br />
+						{this.props.weddingInfo.addressLine2}
+						<br />
+						{this.props.weddingInfo.addressLine3}
+					</p>
+				</div>
+				<hr />
+				<div className="main-content">
+					<h2 className="text-align-center">Accommodations</h2>
+					<h3 className="text-align-center">Group rates are available at both hotels. Just mention our names</h3>
+					<p>@mel INSERT ACCOMMODATIONS INFO HERE</p>
+				</div>
 		    </div>
 		)
 	}
