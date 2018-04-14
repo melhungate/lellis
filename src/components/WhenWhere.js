@@ -12,7 +12,7 @@ class WhenWhere extends React.Component {
 
 
     componentWillReceiveProps(nextProps) {
-    	//@ MEL ask how to do this right in the JSX
+    	//theres a race condition and sometimes the date formatting doesn't happen fast enough. 
     	var displayDay = moment(nextProps.weddingInfo.startDate).format('ll');
 		var weddingDay = moment(nextProps.weddingInfo.startDate).format('dddd, LL');
 		var startTime = moment(nextProps.weddingInfo.startDate).format('LT');
