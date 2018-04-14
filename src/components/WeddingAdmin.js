@@ -46,6 +46,7 @@ class WeddingAdmin extends React.Component {
   };
   componentDidMount() {
     this.getCurrentUser();
+    this.props.refresh();
   }
 
   render() {
