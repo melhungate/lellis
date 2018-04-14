@@ -28,7 +28,7 @@ class Login extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form class="centered" onSubmit={this.handleSubmit}>
         <div>
           <label htmlFor="login-email">Email: </label>
           <input

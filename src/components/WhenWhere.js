@@ -1,32 +1,44 @@
 import React from "react";
 import moment from "moment";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class WhenWhere extends React.Component {
 	state = {
       startTime: "",
       endTime: "",
-      weddingDay: ""
+      weddingDay: "",
+      displayDay: ""
     }
 
 
     componentWillReceiveProps(nextProps) {
     	//@ MEL ask how to do this right in the JSX
+    	var displayDay = moment(nextProps.weddingInfo.startDate).format('ll');
 		var weddingDay = moment(nextProps.weddingInfo.startDate).format('dddd, LL');
 		var startTime = moment(nextProps.weddingInfo.startDate).format('LT');
 		var endTime = moment(nextProps.weddingInfo.endDate).format('LT');
     	this.setState({
             startTime: startTime,
             endTime: endTime,
-            weddingDay: weddingDay
+            weddingDay: weddingDay,
+            displayDay: displayDay
   		});
   	}
 
 	render() {
 		return (
 		    <div>
-		        <h1>When & Where</h1>
-				<img src={this.props.weddingInfo.whenWherePic} alt="When & Where Picture"/>
-				<h2>Ceremony and Reception</h2>
+			   	<div className="photo-container">
+	   	          	<ReactCSSTransitionGroup
+			          transitionName="fade"
+			          transitionAppear={true}
+			          transitionAppearTimeout={700}>
+			          <img src={this.props.weddingInfo.whenWherePic} className="cover" alt="When & Where Picture"/>
+			        </ReactCSSTransitionGroup>
+			   		<h1 className="centered">{this.state.displayDay}</h1>
+
+		        </div>
+		        <h2>Ceremony and Reception</h2>
 				<h3>{this.state.weddingDay}</h3>
 				<h3>{this.state.startTime} - {this.state.endTime}</h3>
 				<p>{this.props.weddingInfo.addressLine1}</p>
