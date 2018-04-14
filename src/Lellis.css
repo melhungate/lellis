@@ -13,7 +13,7 @@ h1{
     margin: 0px;
     text-transform:uppercase
 }
-body { margin: 0; padding: 0; border: 0; min-width: 320px; color: #777; }
+body { margin: 0; padding: 0; border: 0; min-width: 320px; color: #777; font-family: ff-meta-serif-web-pro; font-weight: 500; font-size: 16px; letter-spacing: 0.01em; color: #292929;}
 html, button, input, select, textarea, .pure-g [class *= "pure-u"] { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1.02em; }
 p, td { line-height: 1.5; }
 
@@ -38,7 +38,9 @@ h2{
     font-size:35px;
     letter-spacing:-.01em;
     line-height:1em;
-    text-transform:none
+    text-transform:none;
+    margin-top: 0px;
+
 }
 @media screen and (max-width:640px){
     h2{
@@ -125,6 +127,10 @@ h3 a:hover{
         -ms-hyphens:auto;
         hyphens:auto
     }
+    .main-content {
+    padding-left: 20px;
+    padding-right: 20px;
+    }
 }
 a{
     color:inherit;
@@ -133,6 +139,75 @@ a{
 a:active,a:focus{
     outline:0
 }
+
+.main-content {
+    padding: 80px 61px;
+}
+
+.form-title-div {
+    width: 75%;
+    position: relative;
+    margin: 0 auto;
+}
+.form-block {
+    padding: 17px 17px;
+    position: relative;
+    line-height: 1.7em;
+    font-size: 16px;
+    height: auto;
+    margin: 0 auto;
+    width: 75%;
+}
+
+.form-div{
+    position: relative;
+    margin: 0 0 24px;
+    background-color: red
+}
+
+.field{
+    width: 48%;
+    display: inline-block;
+}
+
+.form-label{
+    display: block;
+    background-color: blue;
+    font-family: ff-meta-serif-web-pro;
+}
+
+input {
+    padding: 12px;
+    font-size: 12px;
+    margin: 6px 0 4px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+}
+
+input.small {
+    width: 100%;
+    line-height: normal;
+    background-color: green;
+    margin-right: 2%;
+    float: left;
+}
+
+input.large {
+    width: 100%;
+    line-height: normal;
+    background-color: yellow;
+}
+
+input.box {
+    width: 100%;
+    line-height: normal;
+    background-color: yellow;
+    min-height: 100px;
+    resize: vertical;
+}
+
 .fade-appear {
   opacity: 0.01;
 }
@@ -147,6 +222,7 @@ a:active,a:focus{
     text-align: center;
     color: #fff;
     z-index:500;
+    height: 100vh;
 }
 .centered {
     position: absolute;
@@ -224,6 +300,10 @@ a:active,a:focus{
     flex-shrink: 1;
     display: flex;
     max-width: 100%
+}
+
+.text-align-center {
+    text-align: center;
 }
 
 
