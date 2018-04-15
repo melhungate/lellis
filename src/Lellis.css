@@ -84,6 +84,14 @@ h1 a:hover{
     color:rgba(112,112,112,.6);
     border-color:rgba(112,112,112,.15)
 }
+
+h1.dark{
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
 h2{
     color:#000
 }
@@ -142,6 +150,7 @@ em {
 hr { 
   border: 0; 
   height: 0.2px; 
+  font-family: times;
   background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
   background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
   background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);

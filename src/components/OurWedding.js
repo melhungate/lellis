@@ -39,7 +39,6 @@ class OurWedding extends React.Component {
     return (
         <Router>
         <div>
-        <NavigationMenu weddingName={weddingName} />
         <Switch>
           <Route exact path={`/${weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>}/>
           <Route path={`/${weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
@@ -47,7 +46,6 @@ class OurWedding extends React.Component {
           <Route path={`/${weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
           <Route path={`/${weddingName}/admin`} render={() => <WeddingAdmin weddingInfo={this.state.weddingInfo} refresh={this.refresh}/>} />
         </Switch>
-        <Footer weddingName={weddingName} />
           </div>
         </Router>
     );
