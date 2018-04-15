@@ -6,10 +6,15 @@ import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-ro
 import Guestlist from './Guestlist';
 import EditWedding from './EditWedding';
 import NavigationAdmin from './NavigationAdmin';
+import Story from "./Story";
+import Rsvp from './Rsvp';
+import WhenWhere from './WhenWhere';
+import Registry from './Registry';
 import Login from "./Login";
 import Signup from "./Signup";
 import Logout from "./Logout";
 import Loading from "./Loading";
+import AllWeddings from "./AllWeddings";
 import { getToken } from "../services/tokenService";
 
 class WeddingAdmin extends React.Component {
@@ -57,8 +62,13 @@ class WeddingAdmin extends React.Component {
       return (
           <Router>
           <div>
-          <NavigationAdmin weddingName={weddingName}/>
           <Switch>
+            <Route exact path="/" component={AllWeddings} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path={`/${weddingName}`} render={() => <Story weddingInfo={weddingInfo} refresh={this.props.refresh}/>}/>
+            <Route path={`/${weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={weddingInfo} refresh={this.props.refresh}/>} />
+            <Route path={`/${weddingName}/registry`} render={() => <Registry weddingInfo={weddingInfo} refresh={this.props.refresh}/>} />
+            <Route path={`/${weddingName}/rsvp`} render={() => <Rsvp weddingInfo={weddingInfo} refresh={this.props.refresh}/>} />   
             <Route
               exact
               path={`/${weddingName}/admin/login`}
@@ -71,7 +81,7 @@ class WeddingAdmin extends React.Component {
               path={`/${weddingName}/admin/logout`}
               render={props => {
                 return this.state.user ? (
-                  <Logout setUser={this.setUser}/>
+                  <Logout setUser={this.setUser} weddingInfo={this.props.weddingInfo}/>
                 ) : (
                   <Redirect to={`/${weddingName}/admin/login`} />
                 );

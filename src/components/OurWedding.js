@@ -9,6 +9,8 @@ import WhenWhere from './WhenWhere';
 import Registry from './Registry';
 import WeddingAdmin from './WeddingAdmin';
 import NavigationMenu from './NavigationMenu';
+import AllWeddings from './AllWeddings';
+import Signup from './Signup';
 import Footer from './Footer';
 
 class OurWedding extends React.Component {
@@ -40,10 +42,12 @@ class OurWedding extends React.Component {
         <Router>
         <div>
         <Switch>
-          <Route exact path={`/${weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo}/>}/>
-          <Route path={`/${weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${weddingName}/registry`} render={() => <Registry weddingInfo={this.state.weddingInfo}/>} />
-          <Route path={`/${weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo}/>} />
+          <Route exact path="/" component={AllWeddings} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path={`/${weddingName}`} render={() => <Story weddingInfo={this.state.weddingInfo} refresh={this.refresh}/>}/>
+          <Route path={`/${weddingName}/whenwhere`} render={() => <WhenWhere weddingInfo={this.state.weddingInfo} refresh={this.refresh}/>} />
+          <Route path={`/${weddingName}/registry`} render={() => <Registry weddingInfo={this.state.weddingInfo} refresh={this.refresh}/>} />
+          <Route path={`/${weddingName}/rsvp`} render={() => <Rsvp weddingInfo={this.state.weddingInfo} refresh={this.refresh}/>} />
           <Route path={`/${weddingName}/admin`} render={() => <WeddingAdmin weddingInfo={this.state.weddingInfo} refresh={this.refresh}/>} />
         </Switch>
           </div>

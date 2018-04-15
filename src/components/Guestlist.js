@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import Guest from './Guest';
 import CreateGuest from './CreateGuest';
+import Loading from './Loading';
 import EditWedding from './EditWedding';
+import NavigationAdmin from './NavigationAdmin';
 import { getToken } from '../services/tokenService.js';
 
 class Guestlist extends React.Component {
@@ -51,26 +53,32 @@ class Guestlist extends React.Component {
   }
 
   render() {
-    return (
-      <div className="main-content">
-        <h1 className="dark">Guestlist</h1>
-        <table className="table">
-          <thead className="table">
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th> 
-                <th>Email</th>
-                <th>RSVP</th>
-                <th>Date</th>
-                <th>Message</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.guests.map( guest => <Guest key={guest._id}{...guest} />)}
-          </tbody>
-        </table>
-      </div>
-    );
+    if (this.state.guests.length){
+      return (
+        <div>
+          <NavigationAdmin weddingName={this.props.weddingInfo.weddingName} />
+          <div className="main-content">
+            <h1 className="dark">Guestlist</h1>
+            <table className="table">
+              <thead className="table">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th> 
+                    <th>Email</th>
+                    <th>RSVP</th>
+                    <th>Date</th>
+                    <th>Message</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.guests.map( guest => <Guest key={guest._id}{...guest} />)}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );  
+    }
+    return <Loading />
   }
 }
 

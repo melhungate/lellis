@@ -1,5 +1,6 @@
 import React from "react";
 import { removeToken } from "../services/tokenService";
+import NavigationAdmin from './NavigationAdmin';
 
 const Logout = props => {
   const logout = () => {
@@ -7,8 +8,11 @@ const Logout = props => {
     props.setUser(null);
   };
   return(
-  	<div className="main-content text-align-center">
-  	<button className="button" onClick={logout}>Logout</button>
+  	<div>
+  		<NavigationAdmin weddingName={props.weddingInfo.weddingName} />
+	  	<div className="main-content text-align-center">
+	  		<button className="button" onClick={logout}>Logout</button>
+	  	</div>
   	</div>
   	);
 };

@@ -5,6 +5,9 @@ import NavigationMenu from './NavigationMenu';
 import Footer from './Footer';
 
 class WhenWhere extends React.Component {
+	componentDidMount(){
+		this.props.refresh()
+	}
 	render() {
 		const { weddingInfo } = this.props;
 		if (weddingInfo) {
