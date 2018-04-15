@@ -8,6 +8,10 @@ import NavigationMenu from './NavigationMenu';
 import Footer from './Footer';
 
 class Rsvp extends React.Component {
+  componentDidMount(){
+    this.props.refresh()
+  }
+  
   render() { //@mel - could this be a const? 
     const { weddingInfo } = this.props;
     return (

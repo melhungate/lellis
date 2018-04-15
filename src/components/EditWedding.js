@@ -5,6 +5,7 @@ import moment from "moment";
 import { getToken } from '../services/tokenService.js'
 
 import UploadPic from './UploadPic';
+import NavigationAdmin from './NavigationAdmin';
 import Loading from './Loading';
 
 class EditWedding extends React.Component {
@@ -26,15 +27,13 @@ class EditWedding extends React.Component {
     registryPic: "",
     rsvpPic: ""
   };
-  
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.weddingInfo._id) {
-      const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, startDate, endDate, rsvpDeadline, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic } = nextProps.weddingInfo;
-      var date = moment(nextProps.weddingInfo.startDate).format('YYYY-MM-DD');
-      var startTime = moment(nextProps.weddingInfo.startDate).format('HH:mm');
-      var endTime = moment(nextProps.weddingInfo.endDate).format('HH:mm');
-      var rsvpDeadline = moment(nextProps.weddingInfo.rsvpDeadline).format('YYYY-MM-DD');
+refresh = (weddingInfo) => {
+      var { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, startDate, endDate, rsvpDeadline, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic } = weddingInfo;
+      var date = moment(startDate).format('YYYY-MM-DD');
+      var startTime = moment(startDate).format('HH:mm');
+      var endTime = moment(endDate).format('HH:mm');
+      var rsvpDeadline = moment(rsvpDeadline).format('YYYY-MM-DD');
       this.setState({     
         weddingName: weddingName,
         partnerFirstNameA: partnerFirstNameA,
@@ -52,7 +51,19 @@ class EditWedding extends React.Component {
         whenWherePic: whenWherePic, 
         registryPic: registryPic, 
         rsvpPic: rsvpPic 
-      });      
+      });
+};
+
+  componentDidMount(){
+    if (this.props.weddingInfo._id) {
+      this.refresh(this.props.weddingInfo);
+    }    
+  }
+  
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.weddingInfo._id) {
+      this.refresh(nextProps.weddingInfo);   
     }
   }
 
@@ -120,124 +131,128 @@ class EditWedding extends React.Component {
   };
 
   render() {
-    if (this.state.weddingName){
+    const weddingName = this.state.weddingName;
+    if (weddingName){
       return (
-        <form onSubmit={this.handleSubmit}>
-          <h2>Edit Wedding Details</h2>
-         <div>
-            <input
-              onChange={this.handleChange}
-              value={this.state.weddingName}
-              name="weddingName"
-              type="text"
-              placeholder="weddingName"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="partnerFirstNameA"
-              value={this.state.partnerFirstNameA}
-              type="text"
-              placeholder="partnerFirstNameA"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="partnerLastNameA"
-              value={this.state.partnerLastNameA}
-              type="text"
-              placeholder="partnerLastNameA"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="partnerFirstNameB"
-              value={this.state.partnerFirstNameB}
-              type="text"
-              placeholder="partnerFirstNameB"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="partnerLastNameB"
-              value={this.state.partnerLastNameB}
-              type="text"
-              placeholder="partnerLastNameB"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="date"
-              value={this.state.date}
-              type="date"
-              placeholder="date"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="startTime"
-              value={this.state.startTime}
-              type="time"
-              placeholder="startTime"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="endTime"
-              value={this.state.endTime}
-              type="time"
-              placeholder="endTime"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="rsvpDeadline"
-              value={this.state.rsvpDeadline}
-              type="date"
-              placeholder="rsvpDeadline"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="addressLine1"
-              value={this.state.addressLine1}
-              type="text"
-              placeholder="addressLine1"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="addressLine2"
-              value={this.state.addressLine2}
-              type="text"
-              placeholder="addressLine2"
-            />
-          </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              name="addressLine3"
-              value={this.state.addressLine3}
-              type="text"
-              placeholder="addressLine3"
-            />
-          </div>
-          <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Our Story Picture" picName="storyPic"/>
-          <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "When & Where Picture" picName="whenWherePic"/>
-          <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Registry Picture" picName="registryPic"/>
-          <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "RSVP Picture" picName="rsvpPic"/>
-          <input type="submit" value="Submit" />
-        </form>
+        <div>
+          <NavigationAdmin weddingName={weddingName} />
+          <form onSubmit={this.handleSubmit}> 
+            <h2>Edit Wedding Details</h2>
+           <div>
+              <input
+                onChange={this.handleChange}
+                value={weddingName}
+                name="weddingName"
+                type="text"
+                placeholder="weddingName"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="partnerFirstNameA"
+                value={this.state.partnerFirstNameA}
+                type="text"
+                placeholder="partnerFirstNameA"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="partnerLastNameA"
+                value={this.state.partnerLastNameA}
+                type="text"
+                placeholder="partnerLastNameA"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="partnerFirstNameB"
+                value={this.state.partnerFirstNameB}
+                type="text"
+                placeholder="partnerFirstNameB"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="partnerLastNameB"
+                value={this.state.partnerLastNameB}
+                type="text"
+                placeholder="partnerLastNameB"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="date"
+                value={this.state.date}
+                type="date"
+                placeholder="date"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="startTime"
+                value={this.state.startTime}
+                type="time"
+                placeholder="startTime"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="endTime"
+                value={this.state.endTime}
+                type="time"
+                placeholder="endTime"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="rsvpDeadline"
+                value={this.state.rsvpDeadline}
+                type="date"
+                placeholder="rsvpDeadline"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="addressLine1"
+                value={this.state.addressLine1}
+                type="text"
+                placeholder="addressLine1"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="addressLine2"
+                value={this.state.addressLine2}
+                type="text"
+                placeholder="addressLine2"
+              />
+            </div>
+            <div>
+              <input
+                onChange={this.handleChange}
+                name="addressLine3"
+                value={this.state.addressLine3}
+                type="text"
+                placeholder="addressLine3"
+              />
+            </div>
+            <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Our Story Picture" picName="storyPic"/>
+            <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "When & Where Picture" picName="whenWherePic"/>
+            <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "Registry Picture" picName="registryPic"/>
+            <UploadPic onUploadSuccess={this.onUploadSuccess} buttonText = "RSVP Picture" picName="rsvpPic"/>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
       );
     }
     return <Loading />

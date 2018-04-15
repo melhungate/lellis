@@ -4,8 +4,6 @@ import NavigationMenu from './NavigationMenu';
 import Footer from './Footer';
 
 const Story = ({weddingInfo}) => {
-	console.log(weddingInfo);
-
     return (
     	<div>
 	    	<NavigationMenu weddingName={weddingInfo.weddingName} />
