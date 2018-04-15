@@ -6,14 +6,13 @@ const NavigationMenu = ({ weddingName }) => (
   		<div className="align-left">
 	  	  <div className="Header-nav"> 
 	      	<div className="Header-nav-inner">
-	          <a className="Header-nav-item Header-branding">{weddingName}</a>
+	          <Link className="Header-nav-item Header-branding" to={`/${weddingName}`}>{weddingName}</Link>
 	        </div>
 	      </div>
       	</div>
       	<div className="align-right">
 	      	<div className="Header-nav align-right"> 
 		      	<div className="Header-nav-inner">
-		          <Link className="Header-nav-item" to={`/${weddingName}`}>Our Story</Link>
 		          <Link className="Header-nav-item" to={`/${weddingName}/whenwhere`}>When & Where</Link>
 		          <Link className="Header-nav-item" to={`/${weddingName}/registry`}>Registry</Link>
 		          <Link className="Header-nav-item" to={`/${weddingName}/rsvp`}>RSVP</Link>

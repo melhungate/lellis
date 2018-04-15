@@ -8,7 +8,6 @@ import Rsvp from './Rsvp';
 import WhenWhere from './WhenWhere';
 import Registry from './Registry';
 import WeddingAdmin from './WeddingAdmin';
-import Admin from './Admin';
 import NavigationMenu from './NavigationMenu';
 import Footer from './Footer';
 
