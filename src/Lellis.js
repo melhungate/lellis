@@ -4,7 +4,7 @@ import ReactFilestack from 'filestack-react';
 import './Lellis.css';
 import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom';
 import Signup from "./components/Signup";
-import Admin from './components/Admin';
+import AllWeddings from './components/AllWeddings';
 import OurWedding from './components/OurWedding';
 import WeddingAdmin from './components/WeddingAdmin';
 import CreateWedding from './components/CreateWedding';
@@ -47,7 +47,7 @@ class Lellis extends Component {
       return ( <Router>
         <div>
         <Switch>
-          <Route exact path="/" component={Admin} />
+          <Route exact path="/" component={AllWeddings} />
           <Route exact path='/signup' component={Signup} />
           <Route
             path={'/signup/info'}

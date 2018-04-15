@@ -17,7 +17,7 @@ body { margin: 0; padding: 0; border: 0; min-width: 320px; color: #777; font-fam
 html, button, input, select, textarea, .pure-g [class *= "pure-u"] { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1.02em; }
 p, td { line-height: 1.5; }
 
-th { background: #eee; white-space: nowrap; }
+th { white-space: nowrap;}
 th, td { padding: 10px; text-align: left; vertical-align: top; font-size: .9em; font-weight: normal; border-right: 1px solid #fff; }
 
 @media screen and (max-width:640px){
@@ -147,9 +147,38 @@ hr {
   background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
   background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
 }
+Link{
 
+}
 .main-content {
     padding: 80px 61px;
+}
+
+.table-container {
+    padding: 100px 61px 80px;
+    text-align: center;
+}
+
+.table {
+    margin: 0 auto;
+    width: 75%;
+    border-collapse: collapse;
+}
+
+thead.table{
+    border-bottom: 1px solid lightblue;
+    background-color: white;
+}
+
+.table-element{
+    border-right: 1px solid lightblue;
+}
+
+.table-link{
+    padding-left: 20px;
+}
+.table-link:hover{
+    color: lightblue;
 }
 
 .form-title-div {
@@ -217,11 +246,15 @@ hr {
 
 @media screen and (max-width:640px){
     .main-content {
-    padding-left: 20px;
-    padding-right: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     .form-block{
         width: 90%;
+    }
+    .table-container{
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
@@ -282,6 +315,21 @@ input.box {
   width: 100%;
   height: 100vh;
 }
+
+.footer-wrapper{
+    padding-top:20px;
+    padding-bottom:20px;
+    text-align: center;
+}
+
+.footer-item{
+    font-family: Montserrat;
+    margin: 0 2em;
+}
+.footer-item:hover{
+    color: lightblue;
+}
+
 .Header-inner{
     display:-webkit-box;
     display:-ms-flexbox;
@@ -324,7 +372,11 @@ input.box {
 
 .Header-nav-item{
     margin:0 2em;
-    padding:.618em 0
+    padding:.618em 0;
+}
+
+.Header-nav-item:hover{
+    color: lightblue;
 }
 
 .align-right{
