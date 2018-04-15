@@ -43,7 +43,7 @@ class CreateWedding extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic  } = this.state;
+    const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, rsvpDeadline, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic  } = this.state;
     //const convertedHour = moment(startTime);
     
     //startTime.split(":") this will return an array of two elements
@@ -64,7 +64,9 @@ class CreateWedding extends React.Component {
     const endMinutes = parseInt(endTimeSplit[1]);
 
     endDate.setHours(endHour);
-    endDate.setMinutes(endMinutes);   
+    endDate.setMinutes(endMinutes); 
+
+    //var rsvpDeadline = new Date(rsvpDeadline);  
 
     const token = getToken(); 
 
@@ -78,6 +80,7 @@ class CreateWedding extends React.Component {
         partnerLastNameB,
         startDate, 
         endDate,
+        rsvpDeadline,
         addressLine1,
         addressLine2,
         addressLine3,
@@ -168,6 +171,15 @@ class CreateWedding extends React.Component {
             value={this.state.endTime}
             type="time"
             placeholder="endTime"
+          />
+        </div>
+        <div>
+          <input
+            onChange={this.handleChange}
+            name="rsvpDeadline"
+            value={this.state.rsvpDeadline}
+            type="date"
+            placeholder="rsvpDeadline"
           />
         </div>
         <div>

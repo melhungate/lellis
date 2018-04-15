@@ -16,6 +16,7 @@ class EditWedding extends React.Component {
     date: "",
     startTime: "", 
     endTime: "",
+    rsvpDeadline: "",
     addressLine1: "",
     addressLine2: "",
     addressLine3: "",
@@ -28,10 +29,11 @@ class EditWedding extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.weddingInfo._id) {
-      const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, startDate, endDate, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic } = nextProps.weddingInfo;
+      const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, startDate, endDate, rsvpDeadline, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic } = nextProps.weddingInfo;
       var date = moment(nextProps.weddingInfo.startDate).format('YYYY-MM-DD');
       var startTime = moment(nextProps.weddingInfo.startDate).format('HH:mm');
       var endTime = moment(nextProps.weddingInfo.endDate).format('HH:mm');
+      var rsvpDeadline = moment(nextProps.weddingInfo.rsvpDeadline).format('YYYY-MM-DD');
       this.setState({     
         weddingName: weddingName,
         partnerFirstNameA: partnerFirstNameA,
@@ -41,6 +43,7 @@ class EditWedding extends React.Component {
         date: date, 
         startTime: startTime, 
         endTime: endTime, 
+        rsvpDeadline: rsvpDeadline,
         addressLine1: addressLine1,
         addressLine2: addressLine2,
         addressLine3: addressLine3,
@@ -57,6 +60,7 @@ class EditWedding extends React.Component {
       this.setState({
           [picName]: url,
       });
+      this.props.refresh();
     
   }
 
@@ -68,7 +72,7 @@ class EditWedding extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic  } = this.state;
+    const { weddingName, partnerFirstNameA, partnerLastNameA, partnerFirstNameB, partnerLastNameB, date, startTime, endTime, rsvpDeadline, addressLine1, addressLine2, addressLine3, storyPic, whenWherePic, registryPic, rsvpPic  } = this.state;
     const token = getToken(); 
     var eventDate = new Date(date);
     var startDate = new Date(eventDate.getTime());
@@ -98,6 +102,7 @@ class EditWedding extends React.Component {
         partnerLastNameB,
         startDate, 
         endDate,
+        rsvpDeadline,
         addressLine1,
         addressLine2,
         addressLine3,
@@ -188,6 +193,15 @@ class EditWedding extends React.Component {
               value={this.state.endTime}
               type="time"
               placeholder="endTime"
+            />
+          </div>
+          <div>
+            <input
+              onChange={this.handleChange}
+              name="rsvpDeadline"
+              value={this.state.rsvpDeadline}
+              type="date"
+              placeholder="rsvpDeadline"
             />
           </div>
           <div>

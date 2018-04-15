@@ -91,7 +91,7 @@ class WeddingAdmin extends React.Component {
               path={`/${weddingName}/admin`}
               render={props => {
                 return this.state.user ? (
-                  <EditWedding weddingInfo={this.props.weddingInfo}/>
+                  <EditWedding weddingInfo={this.props.weddingInfo} refresh={this.props.refresh}/>
                 ) : (
                   <Redirect to={`/${weddingName}/admin/login`} />
                 );
