@@ -6,7 +6,11 @@ const Logout = props => {
     removeToken();
     props.setUser(null);
   };
-  return <button onClick={logout}>Logout</button>;
+  return(
+  	<div className="main-content text-align-center">
+  	<button className="button" onClick={logout}>Logout</button>
+  	</div>
+  	);
 };
 
 export default Logout;

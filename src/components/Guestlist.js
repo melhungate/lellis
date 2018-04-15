@@ -52,10 +52,10 @@ class Guestlist extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Guest List</h1>
-        <table className="guests">
-          <tbody>
+      <div className="main-content">
+        <h1 className="dark">Guestlist</h1>
+        <table className="table">
+          <thead className="table">
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th> 
@@ -64,6 +64,8 @@ class Guestlist extends React.Component {
                 <th>Date</th>
                 <th>Message</th>
             </tr>
+          </thead>
+          <tbody>
             {this.state.guests.map( guest => <Guest key={guest._id}{...guest} />)}
           </tbody>
         </table>

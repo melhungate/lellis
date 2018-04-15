@@ -4,12 +4,15 @@ import Guest from './Guest';
 import CreateGuest from './CreateGuest';
 import moment from "moment";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import NavigationMenu from './NavigationMenu';
+import Footer from './Footer';
 
 class Rsvp extends React.Component {
   render() { //@mel - could this be a const? 
     const { weddingInfo } = this.props;
     return (
       <div>
+        <NavigationMenu weddingName={weddingInfo.weddingName} />
         <div className="photo-container">
           <ReactCSSTransitionGroup
               transitionName="fade"
@@ -26,6 +29,7 @@ class Rsvp extends React.Component {
         </div>
         <CreateGuest weddingId={this.props.weddingInfo._id}/>
         </div>
+        <Footer weddingName={weddingInfo.weddingName} />
       </div>
     );
   }

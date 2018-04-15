@@ -5,6 +5,7 @@ import moment from "moment";
 import { getToken } from '../services/tokenService.js'
 
 import UploadPic from './UploadPic';
+import Loading from './Loading';
 
 class EditWedding extends React.Component {
   state = {
@@ -239,7 +240,7 @@ class EditWedding extends React.Component {
         </form>
       );
     }
-    return <h2>LOADING</h2>
+    return <Loading />
   }
 }
 

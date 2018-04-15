@@ -5,10 +5,11 @@ import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-ro
 
 import Guestlist from './Guestlist';
 import EditWedding from './EditWedding';
-import NavigationMenu from './NavigationMenu';
+import NavigationAdmin from './NavigationAdmin';
 import Login from "./Login";
 import Signup from "./Signup";
 import Logout from "./Logout";
+import Loading from "./Loading";
 import { getToken } from "../services/tokenService";
 
 class WeddingAdmin extends React.Component {
@@ -56,6 +57,7 @@ class WeddingAdmin extends React.Component {
       return (
           <Router>
           <div>
+          <NavigationAdmin weddingName={weddingName}/>
           <Switch>
             <Route
               exact
@@ -102,7 +104,7 @@ class WeddingAdmin extends React.Component {
           </Router>
       );
     }
-    return <h2>LOADING</h2>
+    return <Loading />
   }
 }
 

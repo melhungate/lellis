@@ -1,6 +1,8 @@
 import React from "react";
 import moment from "moment";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import NavigationMenu from './NavigationMenu';
+import Footer from './Footer';
 
 class WhenWhere extends React.Component {
 	render() {
@@ -8,6 +10,7 @@ class WhenWhere extends React.Component {
 		if (weddingInfo) {
 			return (
 			    <div>
+	    			<NavigationMenu weddingName={weddingInfo.weddingName} />
 				   	<div className="photo-container">
 		   	          	<ReactCSSTransitionGroup
 				          transitionName="fade"
@@ -30,12 +33,7 @@ class WhenWhere extends React.Component {
 							{weddingInfo.addressLine3}
 						</p>
 					</div>
-					<hr />
-					<div className="main-content">
-						<h2 className="text-align-center">Accommodations</h2>
-						<h3 className="text-align-center">Group rates are available at both hotels. Just mention our names</h3>
-						<p>@mel INSERT ACCOMMODATIONS INFO HERE</p>
-					</div>
+					<Footer weddingName={weddingInfo.weddingName} />
 			    </div>
 			)
 		}
