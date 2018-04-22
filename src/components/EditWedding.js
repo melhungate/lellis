@@ -68,7 +68,7 @@ refresh = (weddingInfo) => {
   }
 
   onUploadSuccess = (success, picName) => {
-      const url = success.filesUploaded[0].url;
+      const url = success.filesUploaded[0].url; //adding comment so I can commit again
       this.setState({
           [picName]: url,
       });
