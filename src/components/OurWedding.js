@@ -34,6 +34,7 @@ class OurWedding extends React.Component {
 
   componentDidMount() {
     this.refresh();
+    console.log("component did mount");
   }
 
   render() {

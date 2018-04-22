@@ -72,8 +72,6 @@ refresh = (weddingInfo) => {
       this.setState({
           [picName]: url,
       });
-      this.props.refresh();
-    
   }
 
   handleChange = e => {
@@ -103,7 +101,6 @@ refresh = (weddingInfo) => {
 
     endDate.setHours(endHour);
     endDate.setMinutes(endMinutes);    
-
     //console.log(endTime);
     axios
       .put(`/weddings/${this.props.weddingInfo._id}`, {
