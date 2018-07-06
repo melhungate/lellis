@@ -1,11 +1,11 @@
 # Wedding RSVP
 
 This Wedding RSVP Application is a Full-Stack Application.
-Front-end technologies: 
+### Front-end technologies: 
 * React (User Interface)
 * Axios (Communicating with the Backend)
 
-Back-end technologies:
+### Back-end technologies:
 * Express
 * MongoDB
 * Mongoose
@@ -17,7 +17,7 @@ Back-end technologies:
 ### Prerequisites
 
 MongoDB needs to be installed locally. 
-Mac Users:
+#### Mac Users:
 1. Make sure you have [homebrew](https://brew.sh/) installed. 
 2. Install mongodb using homebrew:
 ```
@@ -36,7 +36,7 @@ sudo mkdir -p /data/db
 sudo chown -R `id -un` /data/db
 ```
 
-PC Users:
+#### PC Users:
 
 1. Install [MongoDB Community Edition](https://www.mongodb.com/download-center#community)
 2. Follow [these instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
